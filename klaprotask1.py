@@ -33,12 +33,12 @@ with open(r'C:\Users\ramal\OneDrive\Desktop\kla\test.yaml') as file:
                 fileWriteOp = ""
                 fileWriteOp = str(now)+printobj+"Exit\n"
                 file1.write(fileWriteOp)
-    mainservice = service['M1SampleWorkFlow']
-    name = "M1SampleWorkFlow"
+    mainservice = service['M1A_Workflow']
+    name = "M1A_Workflow"
     for key in mainservice:
         if mainservice[key] == 'Sequential':
             seqfunction(mainservice['Activities'], name, now)
         # else:
             # concurrentfunction(mainservice['Activities'])
             # print(service['M1SampleSubTask1']['Task'])
-            # print(service['M1SampleWorkFlow']['M1SampleSubFlow']['M1SampleSubTask1'])
+            # print(service['M1A_Workflow']['M1SampleSubFlow']['M1SampleSubTask1'])
