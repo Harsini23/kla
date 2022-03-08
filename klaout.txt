@@ -1,0 +1,6 @@
+2022-03-08 13:19:29.734450; M1SampleWorkFlow.M1SampleTask1 Entry
+2022-03-08 13:19:29.734450; M1SampleWorkFlow.M1SampleTask1 ExecutingTimeFunction(Task1_Input,1)
+2022-03-08 13:19:31.734450; M1SampleWorkFlow.M1SampleTask2 Entry
+2022-03-08 13:19:31.734450; M1SampleWorkFlow.M1SampleTask2 ExecutingTimeFunction(Task2_Input,0)
+2022-03-08 13:19:31.734450; M1SampleWorkFlow.M1SampleSubFlow Entry
+2022-03-08 13:19:31.734450; M1SampleWorkFlow.M1SampleSubFlow Exit

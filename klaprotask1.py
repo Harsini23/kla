@@ -1,34 +1,43 @@
 import yaml
-from datetime import datetime
+from datetime import datetime, timedelta
 now = datetime.now()
-current_time = now.strftime("%H:%M:%S")
-# with open(r'C:\Users\ramal\OneDrive\Desktop\kla\test.yaml') as file:
-#     items = yaml.load(file, Loader=yaml.FullLoader)
-#     print(items)
 with open(r'C:\Users\ramal\OneDrive\Desktop\kla\test.yaml') as file:
     service = yaml.safe_load(file)
-    # print(service['M1SampleWorkFlow']['Type'])
-    # print(service['M1SampleWorkFlow']['Execution'])
-    # print(service['M1SampleWorkFlow']['Activities']
-    #       ['M1SampleSubFlow']['Activities']['M1SampleSubTask1'])
 
-    def seqfunction(activity, name):
+    def seqfunction(activity, name, now):
+        file1 = open("klaout.txt", "w")
         for key in activity:
             currobj = activity[key]
-            print(current_time+";", name, ".", key, " ", "Entry")
-            if(currobj['Inputs']):
+            printobj = "; " + name+"."+key+" "
+            fileWriteOp = str(now)+printobj+"Entry\n"
+            file1.write(fileWriteOp)
+            fl = 1
+            for j in currobj:
+                if(j == "Inputs"):
+                    fl = 0
+            if(fl == 0):
+                # only if its a executable function
                 inputs = currobj['Inputs']
                 funname = currobj['Function']
                 time = inputs['ExecutionTime']
-                print(inputs['FunctionInput'], ",", time)
-    # def concurrentfunction(activity):
-       # a=''
+                fileWriteOp = ""
+                # write the output to file
+                fileWriteOp = str(now)+printobj+"Executing" + \
+                    funname+"("+inputs['FunctionInput']+","+time+")\n"
+                file1.write(fileWriteOp)
+                now = now + timedelta(seconds=int(time))
+                now += timedelta(seconds=int(time))
+            else:
+                #file1.write("In process \n")
+                # write the output to file
+                fileWriteOp = ""
+                fileWriteOp = str(now)+printobj+"Exit\n"
+                file1.write(fileWriteOp)
     mainservice = service['M1SampleWorkFlow']
     name = "M1SampleWorkFlow"
     for key in mainservice:
-        #print(key, ":", service[key])
         if mainservice[key] == 'Sequential':
-            seqfunction(mainservice['Activities'], name)
+            seqfunction(mainservice['Activities'], name, now)
         # else:
             # concurrentfunction(mainservice['Activities'])
             # print(service['M1SampleSubTask1']['Task'])
